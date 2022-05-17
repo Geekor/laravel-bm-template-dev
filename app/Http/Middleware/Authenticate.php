@@ -4,6 +4,8 @@ namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 
+use Geekor\Core\Support\GkApi as Api;
+
 class Authenticate extends Middleware
 {
     /**
@@ -15,6 +17,11 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         if (! $request->expectsJson()) {
+            if ($request->is("api/*")) {
+                return Api::failx(Api::API_REQUEST_ERROR,
+                    '请求 API 时，需要在 header 设置 Accept: application/json');
+            }
+
             return route('login');
         }
     }

@@ -1,8 +1,8 @@
 {
-    "name": "laravel/laravel",
+    "name": "geekor/laravel-bm-template-dev",
     "type": "project",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "description": "GK's Laravel Framework Template.",
+    "keywords": ["geekor", "laravel", "template"],
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
@@ -31,9 +31,13 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/"
+            "Tests\\": "tests/",
+
+            "Geekor\\BackendMaster\\Database\\Factories\\": "_packages/geekor/laravel-backend-master/database/factories/",
+            "Geekor\\BackendMaster\\Tests\\": "_packages/geekor/laravel-backend-master/tests/"
         }
     },
+
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",

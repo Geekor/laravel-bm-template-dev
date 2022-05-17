@@ -73,24 +73,25 @@ class Handler extends ExceptionHandler
         $msg = $e->getMessage();
 
         if ($e instanceof NotFoundHttpException) {
-            return Api::failx404(' 路由【未定义】 >> /' . $request->path());
+            return Api::failxNotFound(' 路由【未定义】 >> /' . $request->path());
         }
 
         if ($e instanceof MethodNotAllowedHttpException) {
-            return Api::failx405('请求该接口的【方法】有误 >> '.$request->method());
+            return Api::failxBadMethod('请求该接口的【方法】有误 >> '.$request->method());
         }
 
         if ($e instanceof BadMethodCallException) {
-            return Api::failx500(vsprintf('%s (%s)', [
+            return Api::failxServerError(vsprintf('%s (%s)', [
                 '路由【绑定】的方法不存在！', $msg
             ]));
         }
 
         // 身份认证失败
         if ($e instanceof AuthenticationException) {
-            return Api::failx401();
+            return Api::failxUnauthenticated();
+            
         } else if ($e instanceof PermissionException) {
-            return Api::failx403($msg ?? '你没有访问权限');
+            return Api::failxForbidden($msg ?? '你没有访问权限');
         }
 
         // 缺少设置 Accept 头

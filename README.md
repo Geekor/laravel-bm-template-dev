@@ -18,7 +18,24 @@ git submodule update --init --recursive
 
 ## 初次使用
 
+安装依赖
+
+```sh
+# 安装依赖
+composer install
+
+# 生成 .env 配置文件
+php -r "file_exists('.env') || copy('.env.example', '.env');"
+
+# 生成 APP KEY
+php artisan key:generate --ansi
+
+# 修改 数据库连接相关的配置
+vim .env
+```
+
 一键配置项目
+
 ```sh
 ./vendor/geekor/laravel-backend-master/scripts/install-module.sh
 ```
