@@ -73,23 +73,17 @@ class Handler extends ExceptionHandler
         $msg = $e->getMessage();
 
         if ($e instanceof NotFoundHttpException) {
-            return Api::failx(Api::API_REQ_ERROR,
-                ' 路由【未定义】 >> /' . $request->path()
-            );
+            return Api::failx404(' 路由【未定义】 >> /' . $request->path());
         }
 
         if ($e instanceof MethodNotAllowedHttpException) {
-            return Api::failx(Api::API_REQ_ERROR,
-                '请求该接口的【方法】有误 >> '.$request->method()
-            );
+            return Api::failx405('请求该接口的【方法】有误 >> '.$request->method());
         }
 
         if ($e instanceof BadMethodCallException) {
-            return Api::failx(Api::API_REQ_ERROR,
-                vsprintf('%s (%s)', [
-                    '路由【绑定】的方法不存在！', $msg
-                ])
-            );
+            return Api::failx500(vsprintf('%s (%s)', [
+                '路由【绑定】的方法不存在！', $msg
+            ]));
         }
 
         // 身份认证失败
@@ -104,7 +98,7 @@ class Handler extends ExceptionHandler
             $contentTypes = $request->getAcceptableContentTypes();
 
             if (! in_array('application/json', $contentTypes)) {
-                return Api::failx(Api::API_REQ_ERROR,
+                return Api::failx(Api::API_REQUEST_ERROR,
                     '请求 API 时，需要在 header 设置 Accept: application/json');
             }
 
