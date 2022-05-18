@@ -89,7 +89,7 @@ class Handler extends ExceptionHandler
         // 身份认证失败
         if ($e instanceof AuthenticationException) {
             return Api::failxUnauthenticated();
-            
+
         } else if ($e instanceof PermissionException) {
             return Api::failxForbidden($msg ?? '你没有访问权限');
         }
@@ -108,7 +108,7 @@ class Handler extends ExceptionHandler
 
         // 参数有误
         if ($e instanceof InputException) {
-            return Api::failx(Api::API_PARAM_MISS, $msg);
+            return Api::failx($e->code, $msg);
         }
 
         // --------------------------------- 未知错误 ---
