@@ -8,6 +8,7 @@ use Illuminate\Auth\AuthenticationException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
+use Spatie\Permission\Exceptions\PermissionDoesNotExist;
 
 use Geekor\Core\Support\GkApi as Api;
 use Geekor\Core\Exceptions\PermissionException;
@@ -92,6 +93,10 @@ class Handler extends ExceptionHandler
 
         } else if ($e instanceof PermissionException) {
             return Api::failxForbidden($msg ?? '你没有访问权限');
+
+        } else if ($e instanceof PermissionDoesNotExist) {
+            //类似这样的错： There is no permission named `master:role-a` for guard `user`
+            return Api::failxForbidden('非法设置权限');
         }
 
         // 缺少设置 Accept 头
