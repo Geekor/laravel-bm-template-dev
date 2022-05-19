@@ -6,6 +6,8 @@ use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
 {
+    use \Geekor\BackendMaster\Traits\SettingRoutes;
+
     /**
      * The application's global HTTP middleware stack.
      *
