@@ -89,7 +89,6 @@ class ExampleTest extends TestCase
 "autoload-dev": {
     "psr-4": {
         "Tests\\": "tests/",
-master/tests/Unit</directory>
 
         "Geekor\\BackendMaster\\Database\\Factories\\": "_packages/geekor/laravel-backend-master/database/factories/",
         "Geekor\\BackendMaster\\Tests\\": "_packages/geekor/laravel-backend-master/tests/"
