@@ -7,6 +7,7 @@
     "require": {
         "php": "^8.0.2",
         "guzzlehttp/guzzle": "^7.2",
+        "jenssegers/agent": "^2.6",
         "laravel/framework": "^9.12",
         "laravel/sanctum": "^2.15",
         "laravel/tinker": "^2.7",
@@ -21,12 +22,18 @@
         "spatie/laravel-ignition": "^1.0"
     },
     "autoload": {
+        "files": [
+            "_packages/geekor/laravel-gk-core/src/helpers.php"
+        ],
         "psr-4": {
             "App\\": "app/",
+            "Modules\\": "modules/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
 
             "Geekor\\Core\\": "_packages/geekor/laravel-gk-core/src/",
+            "Geekor\\Module\\": "_packages/geekor/laravel-gk-module/src/",
+
             "Geekor\\BackendMaster\\": "_packages/geekor/laravel-backend-master/src/",
             "Geekor\\BackendMaster\\Database\\Factories\\": "_packages/geekor/laravel-backend-master/database/factories/"
         }
