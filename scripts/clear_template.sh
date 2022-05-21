@@ -18,6 +18,9 @@ function do_clear()
     # 删除 第三方翻译
     cd ./lang && rm -rf vendor/ && cd ..
 
+    # 删除 第三方模块
+    cd ./_modules && rm -rf * && cd ..
+
 }
 
 # =====================================

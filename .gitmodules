@@ -1,6 +1,9 @@
 [submodule "_packages/geekor/laravel-gk-core"]
 	path = _packages/geekor/laravel-gk-core
 	url = https://github.com/Geekor/laravel-gk-core.git
+[submodule "_packages/geekor/laravel-gk-module"]
+	path = _packages/geekor/laravel-gk-module
+	url = https://github.com/Geekor/laravel-gk-module.git
 [submodule "_packages/geekor/laravel-backend-master"]
 	path = _packages/geekor/laravel-backend-master
 	url = https://github.com/Geekor/laravel-backend-master.git
