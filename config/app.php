@@ -198,6 +198,7 @@ return [
         // 在本地开发拓展插件时这里一定要添加！
         Geekor\Core\ServiceProvider::class,
         Geekor\Module\ServiceProvider::class,
+        Geekor\Module\AuthServiceProvider::class,
         Geekor\BackendMaster\ServiceProvider::class,
     ],
 

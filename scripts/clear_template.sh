@@ -1,5 +1,26 @@
 #!/bin/bash
 
+# 如果 子模块目录中没有 .lock 文件，就删除子模块
+function clear_modules()
+{
+    DIR="./_modules"
+    if [ ! -d $DIR ]; then
+        return
+    fi
+
+    for file in `ls $DIR`
+    do
+        if [ -d $DIR/$file ]; then
+            if [ ! -f $DIR/$file/.lock ]; then
+                echo "   >   remove module: $DIR/$file"
+                rm -rf $DIR/$file
+            else
+                echo "   >>> skip locked module: $DIR/$file"
+            fi
+        fi
+    done
+}
+
 function do_clear()
 {
     PWD=`pwd`
@@ -19,8 +40,7 @@ function do_clear()
     cd ./lang && rm -rf vendor/ && cd ..
 
     # 删除 第三方模块
-    cd ./_modules && rm -rf * && cd ..
-
+    clear_modules
 }
 
 # =====================================
